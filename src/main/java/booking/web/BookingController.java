@@ -60,11 +60,14 @@ public class BookingController {
 		
 		Customer customer = bookingRequest.getCustomer();
 		if (customer.getId() == null) {
+			//save new customer
 			customer = customerRepository.save(customer);
 		} else {
+			//lookup customer by id
 			customer = customerRepository.findOne(customer.getId());
 		}
 
+		//get all rooms matching room type
 		List<Room> rooms = roomRepository.findByRoomType(bookingRequest.getRoomType());
 
 		boolean isBooked = false;
@@ -73,7 +76,7 @@ public class BookingController {
 					room.getRoomNumber(), bookingRequest.getCheckInDate(), bookingRequest.getCheckOutDate()));
 
 			if (noReservationsFound && !isBooked) {
-				// create new booking
+				// create new room booking
 				Booking booking = new Booking();
 				booking.setCheckInDate(bookingRequest.getCheckInDate());
 				booking.setCheckOutDate(bookingRequest.getCheckOutDate());
