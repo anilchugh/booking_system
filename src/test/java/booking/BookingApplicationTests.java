@@ -37,7 +37,6 @@ import booking.domain.RoomType;
 @SpringBootTest
 @ActiveProfiles("scratch")
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-// Separate profile for web tests to avoid clashing databases
 public class BookingApplicationTests {
 
 	@Autowired
