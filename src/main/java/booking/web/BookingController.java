@@ -53,6 +53,11 @@ public class BookingController {
 	 */
 	@RequestMapping(path = "/booking/create", method = RequestMethod.POST)
 	public ResponseEntity<Booking> createBooking(@RequestBody BookingRequest bookingRequest) {
+		
+		if (!bookingRequest.getCheckInDate().before(bookingRequest.getCheckOutDate())) {
+			throw new IllegalArgumentException("The check in date must be before the check out date");
+		}
+		
 		Customer customer = bookingRequest.getCustomer();
 		if (customer.getId() == null) {
 			customer = customerRepository.save(customer);
