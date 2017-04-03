@@ -3,6 +3,10 @@ package booking.domain;
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * Represents the customer booking request
+ *
+ */
 public class BookingRequest implements Serializable {
 
 	private static final long serialVersionUID = 1L;

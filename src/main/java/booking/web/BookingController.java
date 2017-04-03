@@ -86,6 +86,7 @@ public class BookingController {
 			}
 		}
 
+		//return empty booking
 		return ResponseEntity.noContent().build();
 
 	}
