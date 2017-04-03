@@ -36,8 +36,8 @@ public class Customer implements Serializable {
 	private String address;
 
 	@OneToMany(mappedBy = "customer")
-    @JsonIgnore
-    private Set<Booking>bookings;
+	@JsonIgnore
+	private Set<Booking> bookings;
 
 	public Set<Booking> getBookings() {
 		return bookings;
