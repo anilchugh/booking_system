@@ -19,6 +19,8 @@ package booking.web;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -44,37 +46,39 @@ public class BookingController {
 	@Autowired
 	private CustomerRepository customerRepository;
 
-	@RequestMapping(path="/booking/create", method = RequestMethod.POST)
-	public Long createBooking(@RequestBody BookingRequest bookingRequest) {
+	/**
+	 * Create a new booking, sets up the customer if not found
+	 * @param bookingRequest containing the booking details
+	 * @return booking confirmation details
+	 */
+	@RequestMapping(path = "/booking/create", method = RequestMethod.POST)
+	public ResponseEntity<Booking> createBooking(@RequestBody BookingRequest bookingRequest) {
 		Customer customer = bookingRequest.getCustomer();
 		if (customer.getId() == null) {
 			customer = customerRepository.save(customer);
-		}
-		else{
+		} else {
 			customer = customerRepository.findOne(customer.getId());
 		}
 
 		List<Room> rooms = roomRepository.findByRoomType(bookingRequest.getRoomType());
-		
+
 		boolean isBooked = false;
 		for (Room room : rooms) {
-			 boolean noReservationsFound = (0 == roomRepository.getTotalReservationByRoomNumberAndDateRange(room.getRoomNumber(),
-					bookingRequest.getCheckInDate(), bookingRequest.getCheckOutDate()));
-			
+			boolean noReservationsFound = (0 == roomRepository.getTotalReservationByRoomNumberAndDateRange(
+					room.getRoomNumber(), bookingRequest.getCheckInDate(), bookingRequest.getCheckOutDate()));
+
 			if (noReservationsFound && !isBooked) {
-				//create new booking
+				// create new booking
 				Booking booking = new Booking();
 				booking.setCheckInDate(bookingRequest.getCheckInDate());
 				booking.setCheckOutDate(bookingRequest.getCheckOutDate());
 				booking.setRoom(room);
 				booking.setCustomer(customer);
-				bookingRepository.save(booking);
-				isBooked = true;
-				return booking.getId();
+				return new ResponseEntity<Booking>(bookingRepository.save(booking), HttpStatus.CREATED);
 			}
 		}
-		
-		return null;
+
+		return ResponseEntity.noContent().build();
 
 	}
 }

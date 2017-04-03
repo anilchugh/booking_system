@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: booking.BookingApplicationTests
--------------------------------------------------------------------------------
-Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 8.27 sec - in booking.BookingApplicationTests

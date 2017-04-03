@@ -88,14 +88,14 @@ Response:
   }
 }
 
-3.Reservations of room number during specific date range after room booking
+3.Reservations of room number 101 during date range 2017-01-10 to 2017-01-20
 
-GET Request: localhost:8080/api/rooms/search/getTotalReservationByRoomNumberAndDateRange?roomNumber=101&checkInDate=2017-01-05&checkOutDate=2017-01-10
+GET Request: localhost:8080/api/rooms/search/getTotalReservationByRoomNumberAndDateRange?roomNumber=101&checkInDate=2017-01-10&checkOutDate=2017-01-20
 
 Response:
 0
 
-4. Add a room booking for existing customer
+4. Add a room booking for existing customer for SINGLE room during date range 2017-01-10 to 2017-01-20
 
 POST Request: localhost:8080/booking/create
 
@@ -109,17 +109,33 @@ Request Body:
   "checkOutDate": "2020-10-20"
 }
 
-Response contains booking confirmation number:
-3
+Response contains booking confirmation:
+{
+  "id": 3,
+  "checkInDate": 1602288000000,
+  "checkOutDate": 1603152000000,
+  "room": {
+    "id": 1,
+    "roomNumber": 101,
+    "price": 100,
+    "roomType": "SINGLE"
+  },
+  "customer": {
+    "id": 1,
+    "forename": "Scott",
+    "surname": "Tiger",
+    "address": "16/2 Stenhouse Cottages, Edinburgh EH11 3JQ"
+  }
+}
 
-5. Reservations of room number 101 during specific date range after room booking
+5. Reservations of room number 101 during date range 2020-10-10 to 2020-10-20 after room booking
 
 GET Request: localhost:8080/api/rooms/search/getTotalReservationByRoomNumberAndDateRange?roomNumber=101&checkInDate=2020-10-10&checkOutDate=2020-10-20
 
 Response:
 1
 
-6. Add a room booking for new customer
+6. Add a room booking for new customer during date range 2020-10-10 to 2020-10-20, notice that Rom 102 will be booked this time
 
 POST Request: localhost:8080/booking/create
 
@@ -135,10 +151,26 @@ Request Body:
   "checkOutDate": "2020-10-20"
 }
 
-Response contains booking confirmation number:
-4
+Response contains booking confirmation:
+{
+  "id": 4,
+  "checkInDate": 1602288000000,
+  "checkOutDate": 1603152000000,
+  "room": {
+    "id": 2,
+    "roomNumber": 102,
+    "price": 100,
+    "roomType": "SINGLE"
+  },
+  "customer": {
+    "id": 2,
+    "forename": "Andy",
+    "surname": "Simpson",
+    "address": "1 Easter Road, Edinburgh EH7 6FH"
+  }
+}
 
-7. Reservations of room number 102 during specific date range after room booking
+7. Reservations of room number 102 during date range 2020-10-10 to 2020-10-20 after room booking
 
 GET Request: localhost:8080/api/rooms/search/getTotalReservationByRoomNumberAndDateRange?roomNumber=102&checkInDate=2020-10-10&checkOutDate=2020-10-20
 
