@@ -1,0 +1,106 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Postman documentation",
+		"_postman_id": "2c81ae5c-901e-51ac-7420-da1aefd6e1b2",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:8080/api/bookings/search/findByRoomId?roomId=1",
+			"request": {
+				"url": "localhost:8080/api/bookings/search/findByRoomId?roomId=1",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Bookings by room id"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/api//bookings/search/findByCustomerId?customerId=1",
+			"request": {
+				"url": "localhost:8080/api//bookings/search/findByCustomerId?customerId=1",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Bookings by customer id"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/api/rooms/search/getTotalReservationByRoomNumberAndDateRange?roomNumber=101&checkInDate=2017-01-05&checkOutDate=2017-01-10",
+			"request": {
+				"url": "localhost:8080/api/rooms/search/getTotalReservationByRoomNumberAndDateRange?roomNumber=101&checkInDate=2017-01-05&checkOutDate=2017-01-10",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Reservations of room number 101 during specific date range after room booking"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/booking/create\n",
+			"request": {
+				"url": "localhost:8080/booking/create\n",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"customer\": {\r\n\t\t\t\t\"id\": \"1\"\r\n\t\t\t\t},\r\n  \"roomType\": \"SINGLE\",\r\n  \"checkInDate\": \"2020-10-10\",\r\n  \"checkOutDate\": \"2020-10-20\"\r\n }"
+				},
+				"description": "Add a room booking for existing customer"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/api/rooms/search/getTotalReservationByRoomNumberAndDateRange?roomNumber=101&checkInDate=2020-10-10&checkOutDate=2020-10-20",
+			"request": {
+				"url": "localhost:8080/api/rooms/search/getTotalReservationByRoomNumberAndDateRange?roomNumber=101&checkInDate=2020-10-10&checkOutDate=2020-10-20",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Reservations of room number during specific date range after room booking"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/booking/create",
+			"request": {
+				"url": "localhost:8080/booking/create\n",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"customer\": {\r\n\t\t\t\t\"forename\": \"Andy\",\r\n\t\t\t\t\"surname\": \"Simpson\",\r\n\t\t\t\t\"address\": \"1 Easter Road, Edinburgh EH7 6FH\"\r\n\t\t\t\t},\r\n  \"roomType\": \"SINGLE\",\r\n  \"checkInDate\": \"2020-10-10\",\r\n  \"checkOutDate\": \"2020-10-20\"\r\n }"
+				},
+				"description": "Add a room booking for new customer"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/api/rooms/search/getTotalReservationByRoomNumberAndDateRange?roomNumber=101&checkInDate=2020-10-10&checkOutDate=2020-10-20",
+			"request": {
+				"url": "localhost:8080/api/rooms/search/getTotalReservationByRoomNumberAndDateRange?roomNumber=102&checkInDate=2020-10-10&checkOutDate=2020-10-20",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Reservations of room number 102 during specific date range after room booking"
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,146 @@
+Run application using mvn spring-boot:run
+
+1. Bookings by room id
+
+GET Request: localhost:8080/api/bookings/search/findByRoomId?roomId=1
+
+Response:
+{
+  "_embedded": {
+    "bookings": [
+      {
+        "checkInDate": "2017-01-01",
+        "checkOutDate": "2017-01-05",
+        "_links": {
+          "self": {
+            "href": "http://localhost:8080/api/bookings/1"
+          },
+          "booking": {
+            "href": "http://localhost:8080/api/bookings/1"
+          },
+          "customer": {
+            "href": "http://localhost:8080/api/bookings/1/customer"
+          },
+          "room": {
+            "href": "http://localhost:8080/api/bookings/1/room"
+          }
+        }
+      }
+    ]
+  },
+  "_links": {
+    "self": {
+      "href": "http://localhost:8080/api/bookings/search/findByRoomId?roomId=1"
+    }
+  }
+}
+
+2. Bookings by customer id
+
+GET Request: localhost:8080/api//bookings/search/findByCustomerId?customerId=1
+
+Response:
+{
+  "_embedded": {
+    "bookings": [
+      {
+        "checkInDate": "2017-01-01",
+        "checkOutDate": "2017-01-05",
+        "_links": {
+          "self": {
+            "href": "http://localhost:8080/api/bookings/1"
+          },
+          "booking": {
+            "href": "http://localhost:8080/api/bookings/1"
+          },
+          "customer": {
+            "href": "http://localhost:8080/api/bookings/1/customer"
+          },
+          "room": {
+            "href": "http://localhost:8080/api/bookings/1/room"
+          }
+        }
+      },
+      {
+        "checkInDate": "2017-01-01",
+        "checkOutDate": "2017-01-05",
+        "_links": {
+          "self": {
+            "href": "http://localhost:8080/api/bookings/2"
+          },
+          "booking": {
+            "href": "http://localhost:8080/api/bookings/2"
+          },
+          "customer": {
+            "href": "http://localhost:8080/api/bookings/2/customer"
+          },
+          "room": {
+            "href": "http://localhost:8080/api/bookings/2/room"
+          }
+        }
+      }
+    ]
+  },
+  "_links": {
+    "self": {
+      "href": "http://localhost:8080/api/bookings/search/findByCustomerId?customerId=1"
+    }
+  }
+}
+
+3.Reservations of room number during specific date range after room booking
+
+GET Request: localhost:8080/api/rooms/search/getTotalReservationByRoomNumberAndDateRange?roomNumber=101&checkInDate=2017-01-05&checkOutDate=2017-01-10
+
+Response:
+0
+
+4. Add a room booking for existing customer
+
+POST Request: localhost:8080/booking/create
+
+Request Body:
+{
+  "customer": {
+				"id": "1"
+				},
+  "roomType": "SINGLE",
+  "checkInDate": "2020-10-10",
+  "checkOutDate": "2020-10-20"
+}
+
+Response contains booking confirmation number:
+3
+
+5. Reservations of room number 101 during specific date range after room booking
+
+GET Request: localhost:8080/api/rooms/search/getTotalReservationByRoomNumberAndDateRange?roomNumber=101&checkInDate=2020-10-10&checkOutDate=2020-10-20
+
+Response:
+1
+
+6. Add a room booking for new customer
+
+POST Request: localhost:8080/booking/create
+
+Request Body:
+{
+  "customer": {
+				"forename": "Andy",
+				"surname": "Simpson",
+				"address": "1 Easter Road, Edinburgh EH7 6FH"
+				},
+  "roomType": "SINGLE",
+  "checkInDate": "2020-10-10",
+  "checkOutDate": "2020-10-20"
+}
+
+Response contains booking confirmation number:
+4
+
+7. Reservations of room number 102 during specific date range after room booking
+
+GET Request: localhost:8080/api/rooms/search/getTotalReservationByRoomNumberAndDateRange?roomNumber=102&checkInDate=2020-10-10&checkOutDate=2020-10-20
+
+Response:
+1

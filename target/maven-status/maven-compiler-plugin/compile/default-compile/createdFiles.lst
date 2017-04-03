@@ -1,0 +1,10 @@
+booking\domain\Customer.class
+booking\domain\RoomType.class
+booking\service\CustomerRepository.class
+booking\web\BookingController.class
+booking\domain\Booking.class
+booking\service\RoomRepository.class
+booking\BookingApplication.class
+booking\domain\BookingRequest.class
+booking\domain\Room.class
+booking\service\BookingRepository.class
